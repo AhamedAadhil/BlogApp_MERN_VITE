@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoutes from "./routes/auth.routes.js";
+import { errorMiddleware } from "./middleware/error.middleware.js";
 dotenv.config();
 
 const app = express();
@@ -21,3 +22,6 @@ app.listen(PORT, () => {
 
 /* APIs */
 app.use("/api/auth", authRoutes);
+
+/* ERROR MIDDLEWARE */
+app.use(errorMiddleware);

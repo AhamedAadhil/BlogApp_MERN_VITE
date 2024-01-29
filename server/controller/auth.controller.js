@@ -1,5 +1,6 @@
 import User from "../model/user.model.js";
 import bcryptjs from "bcryptjs";
+import { errorUtils } from "../utils/error.utils.js";
 
 export const signup = async (req, res, next) => {
   const { username, password, email } = req.body;
@@ -11,7 +12,7 @@ export const signup = async (req, res, next) => {
     email === "" ||
     password === ""
   ) {
-    return res.status(400).json({ message: "All the fields are required!" });
+    return next(errorUtils(400, "All the Fields are Required!"));
   }
 
   const newUser = new User({
@@ -24,6 +25,6 @@ export const signup = async (req, res, next) => {
     await newUser.save();
     res.status(201).json("User Created!");
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
