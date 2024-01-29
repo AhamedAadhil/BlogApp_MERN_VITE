@@ -38,7 +38,6 @@ export default function SignUp() {
         return;
       }
       if (response.ok) {
-        console.log(data);
         setLoading(false);
         toast.success("Account Created!");
         navigate("/sign-in");
@@ -89,7 +88,7 @@ export default function SignUp() {
               <Label value="Your Password" />
               <TextInput
                 type="password"
-                placeholder="password"
+                placeholder="********"
                 id="password"
                 onChange={handleChange}
               />
