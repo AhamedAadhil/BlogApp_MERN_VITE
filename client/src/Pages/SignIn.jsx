@@ -14,7 +14,9 @@ export default function SignIn() {
     email: "",
     password: "",
   });
+  const { currentUser } = useSelector((state) => state.user);
   const { loading } = useSelector((state) => state.user);
+  console.log(currentUser);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
